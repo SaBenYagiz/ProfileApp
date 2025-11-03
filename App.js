@@ -1,27 +1,55 @@
-import { StyleSheet, Text, View } from 'react-native';
-// Adım 5: react-native-safe-area-context'ten import edildi
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
+import ProfileCard from './components/ProfileCard';
 export default function App() {
   return (
-    // Adım 5 & 6: SafeAreaView eklendi ve container stili uygulandı
     <SafeAreaView style={styles.container}>
-      {/* Adım 5 & 6: View eklendi ve padding stili uygulandı */}
       <View style={styles.contentView}>
-        {/* Adım 5: Text bileşeni eklendi */}
-        <Text>My Profile App</Text>
+        <Text style={styles.title}>My Profile App</Text>
+        
+        <ScrollView 
+          showsVerticalScrollIndicator={false}
+          style={styles.scrollView}
+        >
+          <ProfileCard
+            name="Ada Lovelace"
+            role="Mathematician"
+            imageSource={require('./assets/ada.jpg')}          />
+          
+          <ProfileCard
+            name="Alan Turing"
+            role="Computer Scientist"
+            imageSource={require('./assets/alan.jpg')}
+          />
+          
+          <ProfileCard
+            name="Grace Hopper"
+            role="Computer Programmer"
+            imageSource={require('./assets/grace.jpg')}
+          />
+        </ScrollView>
       </View>
     </SafeAreaView>
   );
 }
 
-// Adım 6: StyleSheet API'si kullanılarak stiller oluşturuldu
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f0f2f5', // Açık bir arka plan rengi
+    backgroundColor: '#f0f2f5',
   },
   contentView: {
-    padding: 20, // View'e padding verildi
+    flex: 1,
+    padding: 20,
+  },
+  title: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    textAlign: 'center',
+    color: '#333333',
+  },
+  scrollView: {
+    flex: 1,
   },
 });
